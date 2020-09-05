@@ -9,7 +9,7 @@ class Register extends Component {
     this.state = {
       users: []
     }
-    this.addItem = this.addItem.bind(this);
+    // this.addItem = this.addItem.bind(this);
     
   } 
   
@@ -44,12 +44,12 @@ class Register extends Component {
   render() {
     return (
         <div>
-          <form onSubmit={this.addItem }>
+          <form onSubmit={(e)=>this.addItem(e) }>
             <label>Name: </label>
             <input ref={this.inputRef1} name="name" type="text"></input>
             <label>Mobile Number: </label>
             <input ref={this.inputRef2} name="mnumber" type="text"></input>
-            <button typr="submit">Submit  </button>
+            <button type="submit">Submit  </button>
           </form>
         </div>
     );
