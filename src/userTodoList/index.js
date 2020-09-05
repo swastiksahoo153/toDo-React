@@ -10,7 +10,16 @@ class index extends Component {
         super(props)
     
         this.state = {
-             users:[]
+             users:[
+              {
+                text:"abc",
+                key: 123
+              },
+              {
+                text:"abcd",
+                key: 1234
+              }
+             ]
         }
         this.updateUser=this.updateUser.bind(this)
     }
@@ -30,6 +39,7 @@ class index extends Component {
         <div>
           <h2>Welcome to your own ToDo List</h2>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          {/* {console.log(this.state.users)} */}
           <ul className="navbar-nav mr-auto">
             <li><Link to={'/'} className="nav-link"> Home </Link></li>
             <li><Link to={'/register'} className="nav-link">Register</Link></li>
