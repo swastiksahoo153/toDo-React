@@ -27,12 +27,12 @@ class index extends Component {
 
     updateUser(newUser){
         this.setState( prevState => {
-          console.log("prevstate    ",prevState)
+          // console.log("prevstate    ",prevState)
             return{
-                users:prevState.users.push(newUser)
+                users:prevState.users.concat(newUser)
             }
         },
-        console.log("newstate    ",this.state.users)
+        // ()=>console.log("newstate    ",this.state.users)
         )
     }
 
