@@ -21,7 +21,7 @@ class Home extends Component {
                 {displayList}
             </select>
             {/* {selectedUser= document.getElementById("username").value} */}
-            {console.log(document.getElementById("username"))} 
+            {/* {console.log(document.getElementById("username"))}  */}
         </div>
     );
   }

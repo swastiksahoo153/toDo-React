@@ -25,10 +25,10 @@ class index extends Component {
     }
     
 
-    updateUser(usersArray){
+    updateUser(newUser){
         this.setState( prevState => {
             return{
-                users:usersArray
+                users:prevState.users.push(newUser)
             }
         })
     }

@@ -6,9 +6,6 @@ class Register extends Component {
     super(props)
     this.inputRef1=createRef()
     this.inputRef2=createRef()
-    this.state = {
-      users: []
-    }
     // this.addItem = this.addItem.bind(this);
     
   } 
@@ -17,30 +14,17 @@ class Register extends Component {
     e.preventDefault()
 
     if(this.inputRef1.current.value!=="" && this.inputRef2.current.value!==""){
-        // console.log(this.inputRef.current.value)
         var newUser={
             text:this.inputRef1.current.value,
             key: this.inputRef2.current.value
         }
          
-        this.setState( prevState => {
-            // console.log(prevState.users.concat(newUser))
-            return{
-                users:prevState.users.push(newUser)
-            }
-        })
-        // console.log(newUser)
-        // console.log(this.state.users)
+        console.log(newUser)
+        this.props.updateSelectionList(newUser)
         this.inputRef1.current.value=""
         this.inputRef2.current.value=""
     }
-    // console.log(this.state.users)
 }
-
-  componentDidUpdate(){
-    this.props.updateSelectionList(this.state.users)
-    console.log(this.props,this.state.users)
-  }
   render() {
     return (
         <div>
