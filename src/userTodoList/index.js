@@ -4,6 +4,7 @@ import Home from './Home';
 import About from './About';
 import Register from './Register';
 
+
 class index extends Component {
 
     constructor(props) {
@@ -19,21 +20,61 @@ class index extends Component {
                 text:"abcd",
                 key: 1234
               }
-             ]
+             ],
+            //  userkey:{itemkey:item}
+             userLists:{
+                  123:[
+                    {key:11,text:"pikachu"},
+                    {key:12,text:"ben10"},
+                    {key:13,text:"doremon"}
+                  ],
+                  1234:[
+                    {key:21,text:"pikapika"},
+                    {key:22,text:"10avatar"},
+                    {key:23,text:"jyadugar"}
+                  ]
+              },
+             currentUser:null,
+             currentList:null
         }
         this.updateUser=this.updateUser.bind(this)
+        this.showUser=this.showUser.bind(this)
+        this.addItemToList=this.addItemToList.bind(this)
     }
     
+    addItemToList(userKey,newItem){
+      var userlists=this.state.userLists
+      userlists[userKey]=[...userlists[userKey],newItem]
+      console.log(userKey,newItem)
+      this.setState(prevState=>({
+        ...prevState,
+        userLists:userlists
+      }))
+    }
 
     updateUser(newUser){
-        this.setState( prevState => {
-          // console.log("prevstate    ",prevState)
-            return{
-                users:prevState.users.concat(newUser)
-            }
-        },
-        // ()=>console.log("newstate    ",this.state.users)
+      var keyofuser=newUser.key
+      var newList={...this.state.userLists}
+      newList[keyofuser]=[]
+        this.setState( prevState => ({
+          ...prevState,
+          users:[...prevState.users,{text:newUser.text,key:newUser.key}],
+          userLists:newList,
+        }),
+        ()=>console.log(this.state.userLists,this.state.users)
         )
+    }
+
+    showUser(name){
+      // console.log(name)
+      // console.log(this.state.users)
+      var curUser=this.state.users.find((curU)=>curU.text===name)
+      var curList=this.state.userLists[curUser.key]
+      this.setState({
+        currentUser:curUser,
+        currentList:curList
+      })
+      // console.log(this.state)
     }
 
   render() {
@@ -51,12 +92,16 @@ class index extends Component {
           </nav>
           <hr />
           <Switch>
-              <Route exact path='/' render={() => <Home users={this.state.users} />} />
+              <Route exact path='/' render={() => <Home currState={this.state} addItemToList={this.addItemToList} users={this.state.users} showUser={this.showUser}/>} />
               <Route path='/register' render={() => <Register updateSelectionList={this.updateUser} />} />
               <Route path='/about' component={About} />
           </Switch>
+          
+          
         </div>
       </Router>
+
+  
     );
   }
 }

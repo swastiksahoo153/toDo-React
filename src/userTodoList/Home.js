@@ -1,4 +1,5 @@
 import React, { Component,createRef } from 'react';
+import TodoList from './lists';
 
 class Home extends Component {
 
@@ -13,6 +14,7 @@ class Home extends Component {
     getInfo(e){
         e.preventDefault()
         // console.log(this.inputRef.current.value)
+        this.props.showUser(this.inputRef.current.value)
     }
     
   render() {
@@ -26,7 +28,11 @@ class Home extends Component {
                     {displayList}
                 </select>
                 <button>Submit</button>
+                {/* if(this.currState.currentUser) */}
+                <TodoList cUser={this.props.currState.currentUser} cList={this.props.currState.currentList} addItemToList={this.props.addItemToList}></TodoList>
             </form>
+
+            
         </div>
     );
   }

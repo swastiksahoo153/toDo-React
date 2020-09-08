@@ -6,11 +6,11 @@ class Register extends Component {
     super(props)
     this.inputRef1=createRef()
     this.inputRef2=createRef()
-    // this.addItem = this.addItem.bind(this);
+    this.addNewUser = this.addNewUser.bind(this);
     
   } 
   
-  addItem(e){
+  addNewUser(e){
     e.preventDefault()
 
     if(this.inputRef1.current.value!=="" && this.inputRef2.current.value!==""){
@@ -19,7 +19,7 @@ class Register extends Component {
             key: this.inputRef2.current.value
         }
          
-        console.log(newUser)
+        // console.log(newUser)
         this.props.updateSelectionList(newUser)
         this.inputRef1.current.value=""
         this.inputRef2.current.value=""
@@ -28,7 +28,7 @@ class Register extends Component {
   render() {
     return (
         <div>
-          <form onSubmit={(e)=>this.addItem(e) }>
+          <form onSubmit={(e)=>this.addNewUser(e) }>
             <label>Name: </label>
             <input ref={this.inputRef1} name="name" type="text"></input>
             <label>Mobile Number: </label>
